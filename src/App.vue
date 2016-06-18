@@ -16,19 +16,19 @@
         <!-- 表頭 -->
 
         <tbody>
-          <tr>
-            <th class="number" scope="row">1</th>
+          <tr v-for="d in rows">
+            <th class="number" scope="row">{{ $index + 1 }}</th>
             <td>
-              <div>Name</div>
-              <input type="text">
+              <div>{{ d.name }}</div>
+              <input v-show="d.isEdit" type="text" v-model="d.name">
             </td>
             <td class="duration">
-              <div>123</div>
-              <input type="text">
+              <div>{{ d.duration }}</div>
+              <input v-show="d.isEdit" type="text" v-model="d.duration">
             </td>
             <td class="status">
-              <div>Open</div>
-              <input type="checkbox">
+              <div>{{ (d.open) ? 'Open' : 'Closed' }}</div>
+              <input v-show="d.isEdit" type="checkbox" v-model="d.open">
             </td>
             <td class="edit">
               <button class="btn btn-primary">編輯</button>
@@ -47,7 +47,7 @@
             <td class="duration">
               <input type="text">
             </td>
-            <td  class="status">
+            <td class="status">
               <div>Open?</div>
               <input type="checkbox">
             </td>
@@ -82,8 +82,8 @@ export default {
       newRows: { id: '', name: '', duration: 1, open: false, isEdit: false },
       rows: [
         { id: '00001', name: '任務 A', duration: 1, open: false, isEdit: false },
-        { id: '00002', name: '任務 A', duration: 3, open: false, isEdit: false },
-        { id: '00003', name: '任務 A', duration: 6, open: false, isEdit: false }
+        { id: '00002', name: '任務 B', duration: 3, open: false, isEdit: false },
+        { id: '00003', name: '任務 C', duration: 6, open: false, isEdit: false }
       ]
     };
   }
