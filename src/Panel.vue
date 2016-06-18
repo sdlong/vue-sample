@@ -90,6 +90,9 @@ export default {
       return;
     },
     create (){
+      if( typeof this.rows === 'undefined'){
+         this.$set('rows', []);
+      }
       this.newRows.id = new Date().getTime().toString();
       this.rows.push( this.newRows );
       this.reset();
