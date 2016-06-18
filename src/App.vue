@@ -40,20 +40,20 @@
         <!-- 新增用 -->
         <tfoot>
           <tr>
-            <th class="number" scope="row">新增</th>
+            <th class="number" scope="row">New</th>
             <td>
-              <input type="text">
+              <input type="text" v-model="newRows.name">
             </td>
             <td class="duration">
-              <input type="text">
+              <input type="text" v-model="newRows.duration">
             </td>
-            <td class="status">
+            <td  class="status">
               <div>Open?</div>
-              <input type="checkbox">
+              <input type="checkbox" v-model="newRows.open">
             </td>
             <td class="edit">
-              <button class="btn btn-success">加入</button>
-              <button class="btn btn-warning">重置</button>
+              <button @click="create" class="btn btn-success">加入</button>
+              <button @click="reset" class="btn btn-warning">重置</button>
             </td>
           </tr>
         </tfoot>
@@ -71,6 +71,10 @@ export default {
       return;
     },
     create (){
+      this.newRows.id = new Date().getTime().toString();
+      this.rows.push( this.newRows );
+      this.reset();
+      return;
     },
     edit (id){
       var obj = this.rows.find(function(rows){ return rows.id === id; });
