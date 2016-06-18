@@ -65,13 +65,31 @@
 
 <script>
 export default {
+  methods: {
+    reset (){
+      this.newRows = { id: '', name: '', duration: 1, open: false, isEdit: false };
+      return;
+    },
+    create (){
+    },
+    edit (){
+    },
+    del (){
+    },
+  },
   data () {
     return {
-      msg: 'Hello Vue!'
-    }
+      newRows: { id: '', name: '', duration: 1, open: false, isEdit: false },
+      rows: [
+        { id: '00001', name: '任務 A', duration: 1, open: false, isEdit: false },
+        { id: '00002', name: '任務 A', duration: 3, open: false, isEdit: false },
+        { id: '00003', name: '任務 A', duration: 6, open: false, isEdit: false }
+      ]
+    };
   }
-}
+};
 </script>
+
 
 <style>
 #app{
@@ -86,5 +104,3 @@ thead{
   font-size: 16px; font-weight: 900;
 }
 </style>
-
-
