@@ -66,9 +66,25 @@
 export default {
   props:{
     name: String,
-    rows: Array
+    generator: String
   },
   methods: {
+    fetchData (){
+      var _this = this;
+      // GET request
+      _this
+        .$http({
+          url: 'http://beta.json-generator.com/api/json/get/' + _this.generator,
+          method: 'GET'
+        })
+        .then(function(res){
+          // success
+          _this.$set('rows', res.data);
+        }, function(res){
+          // error
+          console.log( res );
+        });
+    },
     reset (){
       this.newRows = { id: '', name: '', duration: 1, open: false, isEdit: false };
       return;
@@ -92,8 +108,11 @@ export default {
   },
   data () {
     return {
-      newRows: { id: '', name: '', duration: 1, open: false, isEdit: false }
+      newRows: { id: '', name: '', duration: 1, open: false, isEdit: false },
     };
+  },
+  created (){
+    this.fetchData();
   }
 };
 </script>
