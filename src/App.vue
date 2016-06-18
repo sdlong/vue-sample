@@ -31,8 +31,8 @@
               <input v-show="d.isEdit" type="checkbox" v-model="d.open">
             </td>
             <td class="edit">
-              <button class="btn btn-primary">編輯</button>
-              <button class="btn btn-danger">刪除</button>
+              <button @click="edit(d.id)" class="btn btn-primary">{{ (d.isEdit) ? '完成' : '編輯' }}</button>
+              <button @click="del" class="btn btn-danger">刪除</button>
             </td>
           </tr>
         </tbody>
@@ -72,9 +72,15 @@ export default {
     },
     create (){
     },
-    edit (){
+    edit (id){
+      var obj = this.rows.find(function(rows){ return rows.id === id; });
+      obj.isEdit = !obj.isEdit;
+      return;
     },
-    del (){
+    del (id){
+      var idx = this.rows.findIndex(function(rows){ return rows.id === id; });
+      this.rows.splice(idx, 1);
+      return;
     },
   },
   data () {
